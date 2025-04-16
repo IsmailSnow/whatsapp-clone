@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/whatsapp_clone
+    username: username
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://0.0.0.0:8080/realms/app-whatsappclone
+          jwk-set-uri: http://0.0.0.0:8080/realms/app-whatsappclone/protocol/openid-connect/certs
+
+server:
+  port: 9090
+cors:
+  allowedOrigins: 'http://localhost:4200'
+  allowedMethods: 'GET,POST,DELETE,PUT,PATCH'
