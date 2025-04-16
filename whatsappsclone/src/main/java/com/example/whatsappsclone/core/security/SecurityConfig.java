@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         Customizer<OAuth2ResourceServerConfigurer<HttpSecurity>.JwtConfigurer> configurerCustomizer = token -> token.jwtAuthenticationConverter(new JwtConverter());
         Customizer<OAuth2ResourceServerConfigurer<HttpSecurity>> serverConfigurerCustomizer = auth -> auth.jwt(configurerCustomizer);
-        Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> authorizeHttpRequestsCustomizer = req -> req.requestMatchers("/ws/**").permitAll().anyRequest().authenticated();
+        Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> authorizeHttpRequestsCustomizer = req -> req.requestMatchers("/ws/**","/auth/*").permitAll().anyRequest().authenticated();
         httpSecurity.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeHttpRequestsCustomizer)
