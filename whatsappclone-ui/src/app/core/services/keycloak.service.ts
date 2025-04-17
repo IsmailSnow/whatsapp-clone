@@ -33,9 +33,7 @@ export class KeycloakService {
   }
 
   async login() {
-    await this.keycloak.login({
-      redirectUri : window.location.origin
-    });
+    await this.keycloak.login();
   }
 
   get userId(): string {
